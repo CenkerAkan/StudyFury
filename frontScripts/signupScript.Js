@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var username = document.querySelector('input[name="user"]').value;
         var password = document.querySelector('input[name="User_Pass"]').value;
 
+        window.location.href = 'first.html';
         // Log the values to the console
         console.log('Username:', username);
         console.log('Password:', password);
