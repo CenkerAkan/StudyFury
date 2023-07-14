@@ -1,10 +1,47 @@
+const path=require('path');
+const PORT=process.env.PORT||3500;
+const express=require('express');
+const app=express();
+
+const allRoutes=require("./routers/allRoute");
+app.set('view engine','ejs');
+
+
+
+app.use(allRoutes);
+app.use('/frontScripts',express.static(path.join(__dirname, 'frontScripts')));
+
+app.listen(PORT, () => {console.log(`server running on port ${PORT}`);});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Web server code without express integration
 const http=require('http');
 const fs=require('fs');
 const fsPromises=require('fs').promises;
-const path=require('path');
 const express=require('express');
 const app=express();
-const PORT=process.env.PORT||3500;
 
 const logEvents=require('./logEvents');
 const EventEmitter=require('events');
@@ -108,19 +145,6 @@ const server=http.createServer((req,res)=>{
                 serveFile(path.join(__dirname, 'view', '404.html'),contentType,res);
         };
     }
-})
-
-server.listen(PORT, () => {
-    console.log(`server running on port ${PORT}`);
-  });
-//app.listen(3500);
+})*/
 
 
-/*fs.readFile(path.join(__dirname,'view','first.html'), function(error,html){
-    if(error) throw error;
-    http.createServer(function(request,response){
-        response.writeHeader(200,{"Content-Type": "text/html"});
-        response.write(html);
-        response.end();
-    }).listen(PORT)
-});*/
