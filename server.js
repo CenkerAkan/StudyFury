@@ -1,22 +1,48 @@
+const fs=require('fs');
+//const url=require('url');
+const {format}=require('date-fns');
+const { v4: uuid}=require('uuid');
+const fsPromises=require('fs').promises;
 const path=require('path');
 const PORT=process.env.PORT||3500;
 const express=require('express');
 const app=express();
+const bodyParser=require('body-parser');
 
 const allRoutes=require("./routers/allRoute");
-app.set('view engine','ejs');
+app.use(bodyParser.urlencoded({extended:false}));
+//app.set('view engine','ejs');
 
-
-
+//app.use(tracker);
+app.use(dateLog);
 app.use(allRoutes);
 app.use('/frontScripts',express.static(path.join(__dirname, 'frontScripts')));
 
 app.listen(PORT, () => {console.log(`server running on port ${PORT}`);});
 
+function tracker(req,res,next){
+    const url=req.url;
+    console.log(`\n${url}\n`)
+    next();
+}
 
 
-
-
+async function dateLog(req,res,next){
+    const url=req.url;
+    const dateTime=`${format(new Date(),'ddMMyyyy\tHH:mm:ss')}`;
+    const logItem=`${dateTime}\t${uuid()}\t${url}\t${req.method}\n`;
+    //console.log(logItem);
+    try {
+        if(!fs.existsSync(path.join(__dirname,'logs'))){ 
+            await fsPromises.mkdir(path.join(__dirname,'logs'));
+        }
+        await fsPromises.appendFile(path.join(__dirname,'logs','eventLog.txt'),logItem);
+    } catch (err) {
+        console.log(err);
+    }
+    
+    next();
+}
 
 
 

@@ -8,20 +8,38 @@ router.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'../','view','first.html'));
 });
 
-
 router.get('/first.html',(req,res)=>{
     console.log('\nfirst\n');
     res.sendFile(path.join(__dirname,'../','view','first.html'));
 });
 
-router.get('/login.html',(req,res)=>{
+router.get('/login.html',(req,res,next)=>{
     console.log('\nlogin\n');
     res.sendFile(path.join(__dirname,'../','view','login.html'));
+});
+
+router.post('/login.html', (req, res) => {
+    const { username, password } = req.body;
+    console.log('deneme');
+    if(username==='a'&&password==='a'){
+        res.redirect(path.join('menu.html'));
+    }else{
+        res.redirect(path.join('login.html'));
+    }
 });
 
 router.get('/signup.html',(req,res)=>{
     console.log('\nsignup\n');
     res.sendFile(path.join(__dirname,'../','view','signup.html'));
+});
+
+router.post('/signup.html', (req, res) => {
+    const { username, password } = req.body;
+    console.log('deneme');
+    if(username==='a'&&password==='a'){
+        console.log('already exists!')
+    }
+    res.redirect(path.join('first.html'));
 });
 
 router.get('/menu.html',(req,res)=>{
@@ -60,3 +78,4 @@ router.get('/store.html',(req,res)=>{
 });
 
 module.exports=router;
+
