@@ -9,6 +9,9 @@ const express=require('express');
 const app=express();
 const bodyParser=require('body-parser');
 
+
+
+
 const allRoutes=require("./routers/allRoute");
 app.use(bodyParser.urlencoded({extended:false}));
 //app.set('view engine','ejs');
@@ -19,12 +22,6 @@ app.use(allRoutes);
 app.use('/frontScripts',express.static(path.join(__dirname, 'frontScripts')));
 
 app.listen(PORT, () => {console.log(`server running on port ${PORT}`);});
-
-function tracker(req,res,next){
-    const url=req.url;
-    console.log(`\n${url}\n`)
-    next();
-}
 
 
 async function dateLog(req,res,next){
@@ -43,7 +40,6 @@ async function dateLog(req,res,next){
     
     next();
 }
-
 
 
 
