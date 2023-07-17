@@ -1,19 +1,41 @@
-<!DOCTYPE html>
++<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VueDummy</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .box{
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: aqua;
+            margin: 20px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">{{test}}</div>
-    <script>
-        var vue=new Vue({
-            el:"#app",
-            data: {
-                test:"Hello World!",
-            },
-        });
-    </script>
+    <h1>Hello Vue</h1>
+
+    <div id="app">
+        <p>{{title}}    -   {{age}}</p><!-- 2- daha sonra gel o değişkeni buraya yaz-->
+
+        <button v-on:click="age++">Increase Age</button><!-- burada tırnak içindeki kısım js kodudur, v-on yerine @ kullanabilirsin-->
+        <button @click="age--">Decrease Age</button><!-- normalde dinamik olarak değiştirmenin iki yolu var, ilki html, ikincisi js üzerinden bu örnek html üzerinden dinamik değiştirmeyi gösteriyor-->
+        <div @click="changeTitle('Changed title')">Change book title</div><!-- bu da ikinci yolu-->
+        <button @click="changeCom">
+            <span v-if="showComm">Hide Author Info</span>
+            <span v-else>Show Author Info</span>
+        </button>
+        <div v-if="showComm">
+            <p> Name: {{prepName}}_________________github: {{github}}_________________linkedIn: {{linkedIn}}</p>
+        </div>
+        <br>
+        <div class="box" @mousemove="handleMousemove"> x:{{mouseX}}-y:{{mouseY}}</div>
+    </div>
+
+    <script src="VueDum.js"></script>
 </body>
 </html>

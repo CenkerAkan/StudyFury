@@ -37,6 +37,14 @@
     <a href="./first.html">
         <button>back</button>
     </a>
-    <!--<script src="../frontScripts/loginScript.js"></script>-->
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module">
+        import { createApp } from 'vue';
+        import App from './App.vue';
+      
+        const app = createApp(App);
+        app.mount('#app');
+      </script>
 </body>
 </html>

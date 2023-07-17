@@ -8,6 +8,7 @@
 <body>
     <center>
         <h1>Study Fury</h1>
+        <hr>
         <a href="./login.html">
             <button>Log in</button>
         </a>
@@ -15,5 +16,21 @@
             <button>Sign Up</button>
         </a>
     </center>
+    <hr>
+    <div id="app" v-cloak>
+        {{greeting}}
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        let app=Vue.createApp({
+            data: function(){
+                return{
+                    greeting: 'Hello Vue 3'
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
 </body>
 </html>
