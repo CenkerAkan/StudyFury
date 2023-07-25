@@ -1,7 +1,7 @@
 <template>
     <hr>
 
-    <p>{{overText}}</p>
+    <p>Update User</p>
     <input  class="inp-username" type="text" v-model="oldUsername" placeholder="enter old username">
     <input  class="inp-password" type="text" v-model="oldPassword" placeholder="enter old password">
     <input  class="inp-password" type="text" v-model="newUsername" placeholder="enter new password">
@@ -9,7 +9,7 @@
     <button type="submit" @click="
         logCredentials
     ">Update user settings</button>
-    <p>this is the message: {{msg}}</p>
+    <p>feedback message: {{msg}}</p>
 </template>
 
 <script>

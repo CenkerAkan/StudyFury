@@ -9,7 +9,7 @@
     ">{{buttonText}}</button>
     <p>This is a sign up input {{isSignUp}}</p>
     <p>This is a log in input {{isLogin}}</p>
-    <p>this is the message: {{msg}}</p>
+    <p>feedback message: {{msg}}</p>
 </template>
 
 <script>
@@ -29,6 +29,7 @@ export default {
                 ).then((response)=>{
                     console.log(response);
                     console.log("signup");
+                    this.msg="user created"
                 });
             }else if((this.isSignUp||this.isLogin)&&this.isLogin){
                 axios.post(`http://localhost:4000/api/posts/read`,
