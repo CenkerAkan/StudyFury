@@ -1,0 +1,10 @@
+.light{
+    color: aqua;
+    font-size: 25px;
+    font-weight: bold;
+}
+.dark{
+    font-size: 35px;
+    font-weight: bold;
+    color: red;
+}
